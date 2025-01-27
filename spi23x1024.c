@@ -38,6 +38,10 @@ For example:
 #define SPI_MEM_READ_CMD 0x03h // the command to read the MRAM at initil address
 #define SPI_MEM_WRITE_CMD 0x02h // the command to write to the SRAM chip is 0000_0010
 #define SPI_MEM_RDSR_CMD 0x05h // the command to read the status register
+//#define SPI_MEM_WREN_CMD 0x06h // the command for Write Enable
+//#define SPI_MEM_WRDI_CMD 0x04h // the command for Write Disable
+//#define SPI_MEM_WRSR_CMD 0x01h // the command to write values to the status register
+//#define SPI_MEM_FREAD_CMD 0x0Bh // the command for fast read data bytes
 #define SPI_MEM_DEVICE "/dev/spidev0.0" // we're going to open SPI on bus 0 device 0
 //idk what to put here
 
