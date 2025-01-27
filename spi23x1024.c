@@ -35,9 +35,9 @@ For example:
 #include "sram_print.c"
 
 // constants that shouldn't be changed
-#define SPI_MEM_READ_CMD 0x03h // the command to read the MRAM at initil address
-#define SPI_MEM_WRITE_CMD 0x02h // the command to write to the SRAM chip is 0000_0010
-#define SPI_MEM_RDSR_CMD 0x05h // the command to read the status register
+#define SPI_MEM_READ_CMD 0x03 // the command to read the MRAM at initil address
+#define SPI_MEM_WRITE_CMD 0x02 // the command to write to the SRAM chip is 0000_0010
+#define SPI_MEM_RDSR_CMD 0x05 // the command to read the status register
 //#define SPI_MEM_WREN_CMD 0x06h // the command for Write Enable
 //#define SPI_MEM_WRDI_CMD 0x04h // the command for Write Disable
 //#define SPI_MEM_WRSR_CMD 0x01h // the command to write values to the status register
