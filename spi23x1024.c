@@ -12,6 +12,10 @@ Email: aae0008@auburn.edu
 Modified by: Gaines Odom
 Email: gao0006@auburn.edu
 
+
+Modified again by: Andre' Nava
+email: asn0020@auburn.edu
+
 HEY - IF YOU GET "Could not write SPI mode, ret = -1" THEN MAKE SURE YOU RUN
 IT AS sudo <executable-path>
 For example:
@@ -35,10 +39,10 @@ For example:
 #define SPI_MEM_WRITE_CMD 0x02 // the command to write to the SRAM chip is 0000_0010
 #define SPI_MEM_RDSR_CMD 0x05 // the command to read the status register
 #define SPI_MEM_DEVICE "/dev/spidev0.0" // we're going to open SPI on bus 0 device 0
-#define SPI_MEM_NUMBER_OF_BITS 8
+#define SPI_MEM_NUMBER_OF_BITS 24
 #define SPI_MEM_MAX_SPEED_HZ 33000000 // see datasheet
 #define SPI_MEM_DELAY_US 0 // delay in microseconds
-#define SPI_MEM_MAX_ADDRESS 131072                                    //???
+#define SPI_MEM_MAX_ADDRESS 2097152                                    //
 
 typedef struct spi_ioc_transfer spi_ioc_transfer;
 
@@ -147,7 +151,7 @@ void spi_mem_close() {
 */
 uint8_t spi_mem_read_status_reg() {
 	// initialize transmission and receive buffers
-	uint8_t tx_buffer[3];
+	uint8_t tx_buffer[3]; //???
 	uint8_t rx_buffer[3];
 	int i;
 	for (i = 0; i < 3; i++) {               //!!!
