@@ -42,7 +42,7 @@ For example:
 #define SPI_MEM_NUMBER_OF_BITS 24
 #define SPI_MEM_MAX_SPEED_HZ 33000000 // see datasheet
 #define SPI_MEM_DELAY_US 0 // delay in microseconds
-#define SPI_MEM_MAX_ADDRESS 2097152                                    //
+#define SPI_MEM_MAX_ADDRESS 2097152   //131072
 
 typedef struct spi_ioc_transfer spi_ioc_transfer;
 
