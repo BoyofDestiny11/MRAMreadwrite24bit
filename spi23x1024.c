@@ -40,7 +40,7 @@ For example:
 #define SPI_MEM_RDSR_CMD 0x05 // the command to read the status register
 #define SPI_MEM_DEVICE "/dev/spidev0.0" // we're going to open SPI on bus 0 device 0
 #define SPI_MEM_NUMBER_OF_BITS 24
-#define SPI_MEM_MAX_SPEED_HZ 33000000 // see datasheet
+#define SPI_MEM_MAX_SPEED_HZ 40000000 // see datasheet
 #define SPI_MEM_DELAY_US 0 // delay in microseconds
 #define SPI_MEM_MAX_ADDRESS 2097152   //131072
 
