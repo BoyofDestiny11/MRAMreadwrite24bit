@@ -2,7 +2,10 @@
 #include <stdbool.h>
 #include "spi23x1024/spi23x1024.c"
 
-uint16_t img_write2() {uint8_t csv_data[8192];
+#define ADDRESS_WIDTH 24    //or 17??
+#define MAX_MEM_SPEED 40000000
+
+uint16_t img_write2() {uint8_t csv_data[2**(ADDRESS_WIDTH-3)];
    FILE *file =fopen("Aubie.csv", "r");
 
    if (file == NULL) {
@@ -18,7 +21,7 @@ uint16_t img_write2() {uint8_t csv_data[8192];
       return 1;
    }
 
-   for (int i = 0; i < 8192; i++) {
+   for (int i = 0; i < 2**(ADDRESS_WIDTH-3); i++) {
       if (fgets(buffer, sizeof(buffer), file) == NULL) {
          perror("Error reading data");
          fclose(file);
@@ -40,7 +43,8 @@ uint16_t img_write2() {uint8_t csv_data[8192];
 
    fclose(file);
 
-   spi23x1024_init(5000000);
+
+   spi23x1024_init(MAX_MEM_SPEED);
    uint16_t address_idx;
    for (address_idx = 0; address_idx <= SPI23X1024_MAX_ADDRESS; address_idx++) {
    	//printf("%x\n", address_idx);
@@ -49,7 +53,9 @@ uint16_t img_write2() {uint8_t csv_data[8192];
    }	
    spi23x1024_close();
    printf("Done Writing Image to Chip 1.\n");
-   spi23x1024_init2(5000000);
+
+
+   spi23x1024_init2(MAX_MEM_SPEED);
    for (address_idx = 0; address_idx <= SPI23X1024_MAX_ADDRESS; address_idx++) {
    	//printf("%x\n", address_idx);
       uint8_t next_value = csv_data[address_idx];
@@ -57,6 +63,7 @@ uint16_t img_write2() {uint8_t csv_data[8192];
    }	
    spi23x1024_close2();
    printf("Done Writing Image to Chip 2.\n");
+
    return 0;
 }
 
