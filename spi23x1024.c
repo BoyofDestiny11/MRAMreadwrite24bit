@@ -35,10 +35,12 @@ For example:
 #include "sram_print.c"
 
 // constants that shouldn't be changed
-#define SPI_MEM_READ_CMD 0x03 // the command to read the SRAM chip is 0000_0011
-#define SPI_MEM_WRITE_CMD 0x02 // the command to write to the SRAM chip is 0000_0010
-#define SPI_MEM_RDSR_CMD 0x05 // the command to read the status register
+#define SPI_MEM_READ_CMD 0x03h // the command to read the MRAM at initil address
+#define SPI_MEM_WRITE_CMD 0x02h // the command to write to the SRAM chip is 0000_0010
+#define SPI_MEM_RDSR_CMD 0x05h // the command to read the status register
 #define SPI_MEM_DEVICE "/dev/spidev0.0" // we're going to open SPI on bus 0 device 0
+//idk what to put here
+
 #define SPI_MEM_NUMBER_OF_BITS 24
 #define SPI_MEM_MAX_SPEED_HZ 40000000 // see datasheet
 #define SPI_MEM_DELAY_US 0 // delay in microseconds
