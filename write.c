@@ -46,7 +46,7 @@ uint16_t img_write2() {uint8_t csv_data[2**(ADDRESS_WIDTH-3)];
 
    spi23x1024_init(MAX_MEM_SPEED);
    uint16_t address_idx;
-   for (address_idx = 0; address_idx <= SPI23X1024_MAX_ADDRESS; address_idx++) {
+   for (address_idx = 0; address_idx <= SPI_MEM_MAX_ADDRESS; address_idx++) {
    	//printf("%x\n", address_idx);
       uint8_t next_value = csv_data[address_idx];
       spi23x1024_write_byte(address_idx, next_value);
@@ -56,7 +56,7 @@ uint16_t img_write2() {uint8_t csv_data[2**(ADDRESS_WIDTH-3)];
 
 
    spi23x1024_init2(MAX_MEM_SPEED);
-   for (address_idx = 0; address_idx <= SPI23X1024_MAX_ADDRESS; address_idx++) {
+   for (address_idx = 0; address_idx <= SPI_MEM_MAX_ADDRESS; address_idx++) {
    	//printf("%x\n", address_idx);
       uint8_t next_value = csv_data[address_idx];
       spi23x1024_write_byte(address_idx, next_value);
