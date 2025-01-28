@@ -1,11 +1,14 @@
 #include <stdint.h>
 #include <stdbool.h>
-#include "spi23x1024/spi23x1024.c"
+#include <math.h>
+#include "spi23x1024.c"
 
 #define ADDRESS_WIDTH 24    //or 17??
 #define MAX_MEM_SPEED 40000000
 
-uint16_t img_write2() {uint8_t csv_data[2**(ADDRESS_WIDTH-3)];
+uint16_t img_write2() {int size = (int)pow(2, ADDRESS_WIDTH - 3);
+  uint8_t csv_data[size];
+
    FILE *file =fopen("Aubie.csv", "r");
 
    if (file == NULL) {
@@ -21,7 +24,7 @@ uint16_t img_write2() {uint8_t csv_data[2**(ADDRESS_WIDTH-3)];
       return 1;
    }
 
-   for (int i = 0; i < 2**(ADDRESS_WIDTH-3); i++) {
+   for (int i = 0; i < ((int)pow(2, ADDRESS_WIDTH - 3)); i++) {
       if (fgets(buffer, sizeof(buffer), file) == NULL) {
          perror("Error reading data");
          fclose(file);
