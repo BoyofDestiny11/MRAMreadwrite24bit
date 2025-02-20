@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <stdio.h>
 #include <stdbool.h>
 #include <math.h>
 #include "spi23x1024.c"
@@ -6,7 +7,7 @@
 #define ADDRESS_WIDTH 24    //or 17??
 #define MAX_MEM_SPEED 40000000
 
-uint16_t img_write2() {int size = (int)pow(2, ADDRESS_WIDTH - 3);
+uint16_t img_write2() {int size = (int)pow(2, ADDRESS_WIDTH - 3); // Calculate size separately
   uint8_t csv_data[size];
 
    FILE *file =fopen("Aubie.csv", "r");
@@ -30,7 +31,7 @@ uint16_t img_write2() {int size = (int)pow(2, ADDRESS_WIDTH - 3);
          fclose(file);
          return 1;
       }
-        
+
         // Parse the "Address" and "Byte" data
       unsigned int address;
       unsigned int byte;
@@ -39,7 +40,7 @@ uint16_t img_write2() {int size = (int)pow(2, ADDRESS_WIDTH - 3);
          fclose(file);
          return 1;
       }
-   
+
         // Store the byte data in the array
       csv_data[i] = (uint8_t)byte;
    }
@@ -47,24 +48,24 @@ uint16_t img_write2() {int size = (int)pow(2, ADDRESS_WIDTH - 3);
    fclose(file);
 
 
-   spi23x1024_init(MAX_MEM_SPEED);
+   spi_mem_init(MAX_MEM_SPEED);
    uint16_t address_idx;
    for (address_idx = 0; address_idx <= SPI_MEM_MAX_ADDRESS; address_idx++) {
    	//printf("%x\n", address_idx);
       uint8_t next_value = csv_data[address_idx];
-      spi23x1024_write_byte(address_idx, next_value);
-   }	
-   spi23x1024_close();
+      spi_mem_write_byte(address_idx, next_value);
+   }
+   spi_mem_close();
    printf("Done Writing Image to Chip 1.\n");
 
 
-   spi23x1024_init2(MAX_MEM_SPEED);
+   spi_mem_init2(MAX_MEM_SPEED);
    for (address_idx = 0; address_idx <= SPI_MEM_MAX_ADDRESS; address_idx++) {
    	//printf("%x\n", address_idx);
       uint8_t next_value = csv_data[address_idx];
-      spi23x1024_write_byte(address_idx, next_value);
-   }	
-   spi23x1024_close2();
+      spi_mem_write_byte(address_idx, next_value);
+   }
+   spi_mem_close2();
    printf("Done Writing Image to Chip 2.\n");
 
    return 0;
